@@ -71,6 +71,9 @@ public class ContentBean extends BaseBean {
     @Expose
     private RestrictionsBean restrictions;
 
+    @Expose
+    private ExtensionsBean extensions;
+
     public ContentBean() {
     }
 
@@ -190,4 +193,7 @@ public class ContentBean extends BaseBean {
         this.history = history;
     }
 
+    public ExtensionsBean getExtensions() { return extensions; }
+
+    public void setExtensions(ExtensionsBean extensions) { this.extensions = extensions; }
 }
