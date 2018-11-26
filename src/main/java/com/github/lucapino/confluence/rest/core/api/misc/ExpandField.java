@@ -28,6 +28,7 @@ public enum ExpandField {
     CONTAINER("container", "content."),
     HISTORY("history", "content."),
     CHILDREN("children", "content."),
+    CHILDREN_ATTACHMENT("children.attachment", "content."),
     OPERATIONS("operations", "content."),
     DESCENDANTS("descendants", "content."),
     ANCESTORS("ancestors", "content."),

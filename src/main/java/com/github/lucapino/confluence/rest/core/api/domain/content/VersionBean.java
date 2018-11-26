@@ -19,10 +19,12 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 import com.google.gson.annotations.Expose;
 import com.github.lucapino.confluence.rest.core.api.domain.UserBean;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  */
-public class VersionBean {
+public class VersionBean implements Serializable {
 
     @Expose
     private UserBean by;

@@ -18,11 +18,13 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
  */
-public class BodyBean {
+public class BodyBean implements Serializable {
 
     @Expose
     private ViewBean view;

@@ -17,12 +17,14 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
 import com.github.lucapino.confluence.rest.core.api.domain.UserBean;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Martin Böhmer
  */
-public class HistoryBean {
+public class HistoryBean implements Serializable {
 
     @Expose
     private boolean latest;
@@ -31,7 +33,7 @@ public class HistoryBean {
     private UserBean createdBy;
 
     @Expose
-    private Date createdDate;
+    private Date createdDate; // TODO fix. Not deserializable. Confluence returns: "createdDate": "2013-03-13T11:48:31.000+01:00"
 
     public boolean isLatest() {
         return latest;

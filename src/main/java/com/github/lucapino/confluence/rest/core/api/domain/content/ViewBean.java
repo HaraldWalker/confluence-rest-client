@@ -19,10 +19,12 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 import com.google.gson.annotations.Expose;
 import com.github.lucapino.confluence.rest.core.api.domain.common.ExpandableBean;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  */
-public class ViewBean {
+public class ViewBean implements Serializable {
 
     @Expose
     private String value;

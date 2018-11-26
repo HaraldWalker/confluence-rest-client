@@ -20,16 +20,17 @@ import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstan
 import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.*;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 import com.github.lucapino.confluence.rest.core.api.cql.CqlSearchBean;
-import com.github.lucapino.confluence.rest.core.api.domain.cql.CqlSearchResult;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -91,7 +92,7 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
     }
 
     @Override
-    public Future<ContentResultsBean> getContent(ContentType type, String spacekey, String title, ContentStatus status, Date postingDay, List<String> expand, int start, int limit) {
+    public Future<ContentResultsBean> getContent(ContentType type, String spacekey, String title, ContentStatus status, Date postingDay, List<String> expand, int start, int limit) throws UnsupportedEncodingException {
         if (log.isInfoEnabled()) {
             String message = "Getting content. Type=%1$s, space=%2$s, title=%3$s, status=%4$s, postingDay=%5$s, expand=%6$s, start=%7$s, limit=%8$s";
             log.info(String.format(message, type, spacekey, title, status, postingDay, expand, start, limit));
@@ -132,7 +133,7 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
     }
 
     @Override
-    public Future<ContentResultsBean> searchContent(CqlSearchBean searchBean) {
+    public Future<ContentResultsBean> searchContent(CqlSearchBean searchBean) throws UnsupportedEncodingException {
         Validate.notNull(searchBean);
         Validate.notNull(StringUtils.trimToNull(searchBean.getCql()));
 
@@ -337,7 +338,9 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
                 downloadUriPath = attachment.getLinks().getDownload();
             } else {
                 // Not Provided
-                Future<ContentBean> future = getContentById(attachment.getId(), 0, null);
+
+                // need to provide some expand, otherwise we get history back and that causes an error.
+                Future<ContentBean> future = getContentById(attachment.getId(), 0, Arrays.asList(new String[]{"body"}));
                 ContentBean attachmentContent = future.get();
                 downloadUriPath = attachmentContent.getLinks().getDownload();
             }

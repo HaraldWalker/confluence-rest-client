@@ -25,6 +25,7 @@ import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstan
 import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.TYPE;
 import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.SPACE;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class SpaceClientImpl extends BaseClientImpl implements SpaceClient {
 
     @Override
     public Future<SpaceResultsBean> getSpaces(List<String> keys, SpaceType type, SpaceStatus status,
-            List<String> labels, List<String> expand, int start, int limit) throws URISyntaxException {
+            List<String> labels, List<String> expand, int start, int limit) throws UnsupportedEncodingException {
         URIBuilder uriBuilder = buildPath(SPACE);
         List<NameValuePair> nameValuePairs = new ArrayList<>();
         if (keys != null && keys.isEmpty() == false) {
@@ -89,7 +90,7 @@ public class SpaceClientImpl extends BaseClientImpl implements SpaceClient {
     }
 
     @Override
-    public Future<SpaceBean> getSpaceByKey(String key, List<String> expand) {
+    public Future<SpaceBean> getSpaceByKey(String key, List<String> expand) throws UnsupportedEncodingException {
         URIBuilder uriBuilder = buildPath(SPACE, key);
         if (expand != null && expand.isEmpty() == false) {
             String join = StringUtils.join(expand, ",");

@@ -19,8 +19,10 @@ package com.github.lucapino.confluence.rest.core.api.util;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.http.client.utils.URIBuilder;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import org.apache.http.client.utils.URLEncodedUtils;
 
@@ -43,7 +45,7 @@ public class URIHelper {
         return null;
     }
 
-    public static URIBuilder buildPath(URI baseUri, String... paths) {
+    public static URIBuilder buildPath(URI baseUri, String... paths) throws UnsupportedEncodingException {
         URIBuilder uriBuilder = new URIBuilder(baseUri);
         String basePath = uriBuilder.getPath();
         for (String path : paths) {
@@ -51,6 +53,7 @@ public class URIHelper {
             if (parameterIndicatorPosition >= 0) {
                 String parameters = path.substring(parameterIndicatorPosition + 1);
                 path = path.substring(0, parameterIndicatorPosition);
+                path = URLDecoder.decode(path, "UTF-8"); // confluence returns encoded URLs, URI builder would then double encode them.
                 uriBuilder.setParameters(URLEncodedUtils.parse(parameters, Charset.forName("UTF-8")));
             }
             if (path.startsWith("/")) {

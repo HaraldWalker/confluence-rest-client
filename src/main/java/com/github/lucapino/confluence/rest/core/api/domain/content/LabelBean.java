@@ -17,10 +17,12 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * @author Martin Böhmer
  */
-public class LabelBean {
+public class LabelBean implements Serializable {
 
     @Expose
     private String prefix;

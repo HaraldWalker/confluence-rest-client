@@ -17,6 +17,8 @@
 package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ import java.util.List;
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
  */
-public class AttachmentResultsBean {
+public class AttachmentResultsBean implements Serializable {
 
     @Expose
     private List<AttachmentBean> results = new ArrayList<>();

@@ -21,6 +21,7 @@ import com.github.lucapino.confluence.rest.core.api.domain.space.SpaceBean;
 import com.github.lucapino.confluence.rest.core.api.misc.SpaceStatus;
 import com.github.lucapino.confluence.rest.core.api.misc.SpaceType;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -52,7 +53,7 @@ public interface SpaceClient {
      *
      * @throws java.net.URISyntaxException (never thrown due to future)
      */
-    Future<SpaceResultsBean> getSpaces(List<String> keys, SpaceType type, SpaceStatus status, List<String> label, List<String> expand, int start, int limit) throws URISyntaxException;
+    Future<SpaceResultsBean> getSpaces(List<String> keys, SpaceType type, SpaceStatus status, List<String> label, List<String> expand, int start, int limit) throws URISyntaxException, UnsupportedEncodingException;
 
     /**
      * Get a SpaceBean for the given key
@@ -63,5 +64,5 @@ public interface SpaceClient {
      *
      * @return Future with the SpaceBean
      */
-    Future<SpaceBean> getSpaceByKey(String key, List<String> expand);
+    Future<SpaceBean> getSpaceByKey(String key, List<String> expand) throws UnsupportedEncodingException;
 }

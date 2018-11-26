@@ -19,6 +19,7 @@ package com.github.lucapino.confluence.rest.client.api;
 import com.github.lucapino.confluence.rest.core.api.cql.CqlSearchBean;
 import com.github.lucapino.confluence.rest.core.api.domain.cql.CqlSearchResult;
 
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.Future;
 
 /**
@@ -29,5 +30,5 @@ import java.util.concurrent.Future;
  */
 public interface SearchClient {
 
-    Future<CqlSearchResult> searchContent(CqlSearchBean searchBean);
+    Future<CqlSearchResult> searchContent(CqlSearchBean searchBean) throws UnsupportedEncodingException;
 }

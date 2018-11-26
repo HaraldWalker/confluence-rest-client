@@ -18,6 +18,7 @@ package com.github.lucapino.confluence.rest.client.api;
 
 import com.github.lucapino.confluence.rest.core.api.domain.UserBean;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.concurrent.Future;
 
@@ -35,7 +36,7 @@ public interface UserClient {
      *
      * @throws java.net.URISyntaxException (never thrown due to future)
      */
-    Future<UserBean> getUserByUsername(String username) throws URISyntaxException;
+    Future<UserBean> getUserByUsername(String username) throws URISyntaxException, UnsupportedEncodingException;
 
     /**
      * Get the confluence user by key (example:
@@ -47,7 +48,7 @@ public interface UserClient {
      *
      * @throws java.net.URISyntaxException (never thrown due to future)
      */
-    Future<UserBean> getUserByKey(String key) throws URISyntaxException;
+    Future<UserBean> getUserByKey(String key) throws URISyntaxException, UnsupportedEncodingException;
 
     /**
      * Get the current logged in user
@@ -56,7 +57,7 @@ public interface UserClient {
      *
      * @throws java.net.URISyntaxException (never thrown due to future)
      */
-    Future<UserBean> getCurrentUser() throws URISyntaxException;
+    Future<UserBean> getCurrentUser() throws URISyntaxException, UnsupportedEncodingException;
 
     /**
      * Get the Anonymous User
@@ -65,5 +66,5 @@ public interface UserClient {
      *
      * @throws java.net.URISyntaxException (never thrown due to future)
      */
-    Future<UserBean> getAnonymousUser() throws URISyntaxException;
+    Future<UserBean> getAnonymousUser() throws URISyntaxException, UnsupportedEncodingException;
 }

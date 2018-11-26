@@ -1,5 +1,6 @@
 package com.github.lucapino.confluence.rest.client.example;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -33,7 +34,7 @@ public class ExampleApp {
             Future<UserBean> anonymousUser = userClient.getCurrentUser();
             UserBean user = anonymousUser.get();
             System.out.println("Anonymous user: " + user.getDisplayName());
-        } catch (URISyntaxException | InterruptedException | ExecutionException e) {
+        } catch (URISyntaxException | InterruptedException | ExecutionException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
@@ -44,7 +45,7 @@ public class ExampleApp {
             resultsBean.getResults().forEach(space -> {
                 System.out.println("Space: " + space.getName());
             });
-        } catch (URISyntaxException | InterruptedException | ExecutionException e) {
+        } catch (URISyntaxException | InterruptedException | ExecutionException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

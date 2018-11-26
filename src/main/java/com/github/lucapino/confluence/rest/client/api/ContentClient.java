@@ -30,6 +30,7 @@ import com.github.lucapino.confluence.rest.core.api.misc.ContentStatus;
 import com.github.lucapino.confluence.rest.core.api.misc.ContentType;
 import java.io.InputStream;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -81,7 +82,7 @@ public interface ContentClient {
             Date postingDay,
             List<String> expand,
             int start,
-            int limit);
+            int limit) throws UnsupportedEncodingException;
 
     /**
      * Search content and return a paginated list.
@@ -89,7 +90,7 @@ public interface ContentClient {
      * @param searchBean
      * @return A {@link Future} with the {@link ContentResultsBean}
      */
-    Future<ContentResultsBean> searchContent(CqlSearchBean searchBean);
+    Future<ContentResultsBean> searchContent(CqlSearchBean searchBean) throws UnsupportedEncodingException;
 
     /**
      * Returns a paginated list of Comment.

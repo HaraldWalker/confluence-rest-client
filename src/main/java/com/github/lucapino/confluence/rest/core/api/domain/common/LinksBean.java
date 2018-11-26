@@ -18,11 +18,13 @@ package com.github.lucapino.confluence.rest.core.api.domain.common;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
  */
-public class LinksBean {
+public class LinksBean implements Serializable {
 
     @Expose
     private String base;

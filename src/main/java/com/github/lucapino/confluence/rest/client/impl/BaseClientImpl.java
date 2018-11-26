@@ -17,6 +17,7 @@
 package com.github.lucapino.confluence.rest.client.impl;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.concurrent.ExecutorService;
 
@@ -46,11 +47,11 @@ public abstract class BaseClientImpl {
         this.apiConfig = apiConfig;
     }
 
-    protected URIBuilder buildPath(String... paths) {
+    protected URIBuilder buildPath(String... paths) throws UnsupportedEncodingException {
         return URIHelper.buildPath(apiConfig.getRestApiBaseUri(), paths);
     }
 
-    protected URIBuilder buildNonRestPath(String... paths) {
+    protected URIBuilder buildNonRestPath(String... paths) throws UnsupportedEncodingException {
         return URIHelper.buildPath(apiConfig.getBaseUri(), paths);
     }
 

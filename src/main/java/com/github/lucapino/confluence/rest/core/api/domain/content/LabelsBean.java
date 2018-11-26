@@ -16,12 +16,14 @@
 package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Martin Böhmer
  */
-public class LabelsBean {
+public class LabelsBean implements Serializable {
 
     @Expose
     List<LabelBean> results;

@@ -17,19 +17,21 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  *
  */
-public class ExtensionsBean {
+public class ExtensionsBean implements Serializable {
 
     @Expose
-    private Integer position;
+    private String position; // needs to be string since confluence sometimes also returns a string value.
 
-    public Integer getPosition() {
+    public String getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(String position) {
         this.position = position;
     }
 }

@@ -24,6 +24,7 @@ import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstan
 import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.START;
 import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.SEARCH;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -55,7 +56,7 @@ public class SearchClientImpl extends BaseClientImpl implements SearchClient {
     }
 
     @Override
-    public Future<CqlSearchResult> searchContent(CqlSearchBean searchBean) {
+    public Future<CqlSearchResult> searchContent(CqlSearchBean searchBean) throws UnsupportedEncodingException {
         Validate.notNull(searchBean);
         Validate.notNull(StringUtils.trimToNull(searchBean.getCql()));
 

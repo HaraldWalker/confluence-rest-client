@@ -20,10 +20,12 @@ import com.google.gson.annotations.Expose;
 import com.github.lucapino.confluence.rest.core.api.domain.common.LinksBean;
 import com.github.lucapino.confluence.rest.core.api.domain.space.DescriptionBean;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  */
-public class ContainerBean {
+public class ContainerBean implements Serializable {
 
     @Expose
     private String id;

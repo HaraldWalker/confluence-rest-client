@@ -16,6 +16,7 @@
  */
 package com.github.lucapino.confluence.rest.client.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -45,7 +46,7 @@ public class UserClientImpl extends BaseClientImpl implements UserClient {
     }
 
     @Override
-    public Future<UserBean> getUserByUsername(String username) throws URISyntaxException {
+    public Future<UserBean> getUserByUsername(String username) throws UnsupportedEncodingException {
         log.info("Getting user by name '{}'.", username);
         Validate.notNull(username);
         URIBuilder uriBuilder = buildPath(RestPathConstants.USER);
@@ -55,7 +56,7 @@ public class UserClientImpl extends BaseClientImpl implements UserClient {
     }
 
     @Override
-    public Future<UserBean> getUserByKey(String key) throws URISyntaxException {
+    public Future<UserBean> getUserByKey(String key) throws UnsupportedEncodingException {
         log.info("Getting user by key '{}'.", key);
         Validate.notNull(key);
         URIBuilder uriBuilder = buildPath(RestPathConstants.USER);
@@ -64,14 +65,14 @@ public class UserClientImpl extends BaseClientImpl implements UserClient {
     }
 
     @Override
-    public Future<UserBean> getCurrentUser() throws URISyntaxException {
+    public Future<UserBean> getCurrentUser() throws UnsupportedEncodingException {
         log.info("Getting current user");
         URIBuilder uriBuilder = buildPath(RestPathConstants.USER, RestPathConstants.CURRENT);
         return getUser(uriBuilder);
     }
 
     @Override
-    public Future<UserBean> getAnonymousUser() throws URISyntaxException {
+    public Future<UserBean> getAnonymousUser() throws UnsupportedEncodingException {
         log.info("Getting anonymous user");
         URIBuilder uriBuilder = buildPath(RestPathConstants.USER, RestPathConstants.ANONYMOUS);
         return getUser(uriBuilder);

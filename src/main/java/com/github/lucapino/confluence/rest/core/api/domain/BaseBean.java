@@ -19,11 +19,13 @@ package com.github.lucapino.confluence.rest.core.api.domain;
 import com.google.gson.annotations.Expose;
 import com.github.lucapino.confluence.rest.core.api.domain.common.LinksBean;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
  */
-public abstract class BaseBean {
+public abstract class BaseBean implements Serializable {
 
     /**
      * Indicates whether the bean was changed programmatically and requires to
