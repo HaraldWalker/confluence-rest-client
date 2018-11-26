@@ -32,7 +32,8 @@ public enum ExpandField {
     DESCENDANTS("descendants", "content."),
     ANCESTORS("ancestors", "content."),
     RESTRICTIONS("restrictions", "content."),
-    METADATA_LABELS("metadata.labels", "content.");
+    METADATA_LABELS("metadata.labels", "content."),
+    EXPANSIONS_POSITION("expansions.position", "content.");
 
     private final String name;
     private final String searchPrefix;

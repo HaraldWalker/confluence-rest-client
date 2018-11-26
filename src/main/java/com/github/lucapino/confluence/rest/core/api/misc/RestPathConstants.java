@@ -34,6 +34,8 @@ public interface RestPathConstants {
 
     String CONTENT = "/content";
 
+    String CONTENT_SEARCH = "/content/search";
+
     String SEARCH = "/search";
 
     String SPECIFIC_CONTENT = CONTENT + "/%1$s";

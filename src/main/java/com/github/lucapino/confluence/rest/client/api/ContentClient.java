@@ -17,6 +17,7 @@
  */
 package com.github.lucapino.confluence.rest.client.api;
 
+import com.github.lucapino.confluence.rest.core.api.cql.CqlSearchBean;
 import com.github.lucapino.confluence.rest.core.api.domain.content.AttachmentBean;
 import com.github.lucapino.confluence.rest.core.api.domain.content.CommentBean;
 import com.github.lucapino.confluence.rest.core.api.domain.content.CommentResultsBean;
@@ -81,6 +82,14 @@ public interface ContentClient {
             List<String> expand,
             int start,
             int limit);
+
+    /**
+     * Search content and return a paginated list.
+     *
+     * @param searchBean
+     * @return A {@link Future} with the {@link ContentResultsBean}
+     */
+    Future<ContentResultsBean> searchContent(CqlSearchBean searchBean);
 
     /**
      * Returns a paginated list of Comment.

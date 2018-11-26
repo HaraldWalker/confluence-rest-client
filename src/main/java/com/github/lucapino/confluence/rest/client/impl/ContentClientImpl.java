@@ -16,20 +16,8 @@
  */
 package com.github.lucapino.confluence.rest.client.impl;
 
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.EXPAND;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.LIMIT;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.POSTING_DAY;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.SPACEKEY;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.START;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.STATUS;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.TITLE;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.TYPE;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.VERSION;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.CONTENT;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.CONTENT_ATTACHMENT;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.CONTENT_LABEL;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.SPECIFIC_CONTENT;
-import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.CONVERT_TO_STORAGE_CONTENT;
+import static com.github.lucapino.confluence.rest.core.api.misc.RestParamConstants.*;
+import static com.github.lucapino.confluence.rest.core.api.misc.RestPathConstants.*;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -40,8 +28,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import com.github.lucapino.confluence.rest.core.api.cql.CqlSearchBean;
+import com.github.lucapino.confluence.rest.core.api.domain.cql.CqlSearchResult;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -138,6 +129,37 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
         return executorService.submit(() -> {
             return executeGetRequest(uriBuilder.build(), ContentResultsBean.class);
         });
+    }
+
+    @Override
+    public Future<ContentResultsBean> searchContent(CqlSearchBean searchBean) {
+        Validate.notNull(searchBean);
+        Validate.notNull(StringUtils.trimToNull(searchBean.getCql()));
+
+        String cql = searchBean.getCql();
+        List<NameValuePair> nameValuePairs = new ArrayList<>();
+        nameValuePairs.add(new BasicNameValuePair(CQL, cql));
+        if (StringUtils.trimToNull(searchBean.getCqlcontext()) != null) {
+            nameValuePairs.add(new BasicNameValuePair(CQL_CONTEXT, searchBean.getCqlcontext()));
+        }
+        if (searchBean.getExcerpt() != null) {
+            nameValuePairs.add(new BasicNameValuePair(EXCERPT, searchBean.getExcerpt().getName()));
+        }
+        if (CollectionUtils.isNotEmpty(searchBean.getExpand()) == true) {
+            String join = StringUtils.join(searchBean.getExpand(), ",");
+            nameValuePairs.add(new BasicNameValuePair(EXPAND, join));
+        }
+        if (searchBean.getStart() > 0) {
+            nameValuePairs.add(new BasicNameValuePair(START, String.valueOf(searchBean.getStart())));
+        }
+        if (searchBean.getLimit() > 0) {
+            nameValuePairs.add(new BasicNameValuePair(LIMIT, String.valueOf(searchBean.getLimit())));
+        }
+        URIBuilder uriBuilder = buildPath(CONTENT_SEARCH).addParameters(nameValuePairs);
+        return executorService.submit(() -> {
+            return executeGetRequest(uriBuilder.build(), ContentResultsBean.class);
+        });
+
     }
 
     @Override

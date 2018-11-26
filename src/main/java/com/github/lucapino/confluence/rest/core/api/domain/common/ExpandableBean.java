@@ -32,6 +32,9 @@ public class ExpandableBean {
     private String metadata;
 
     @Expose
+    private String expansions;
+
+    @Expose
     private String icon;
 
     @Expose
@@ -86,5 +89,13 @@ public class ExpandableBean {
 
     public void setMetadata(String metadata) {
         this.metadata = metadata;
+    }
+
+    public String getExpansions() {
+        return expansions;
+    }
+
+    public void setExpansions(String expansions) {
+        this.expansions = expansions;
     }
 }
