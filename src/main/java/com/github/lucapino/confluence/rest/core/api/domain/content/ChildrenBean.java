@@ -18,13 +18,18 @@ package com.github.lucapino.confluence.rest.core.api.domain.content;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  */
-public class ChildrenBean {
+public class ChildrenBean implements Serializable {
 
     @Expose
     private CommentBean comment;
+
+    @Expose
+    private AttachmentResultsBean attachment;
 
     public CommentBean getComment() {
         return comment;
@@ -34,4 +39,11 @@ public class ChildrenBean {
         this.comment = comment;
     }
 
+    public AttachmentResultsBean getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(AttachmentResultsBean attachment) {
+        this.attachment = attachment;
+    }
 }
